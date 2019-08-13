@@ -141,6 +141,54 @@ ALTER TABLE `service_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
+
+
+CREATE TABLE `vendor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `business_name` varchar(245) DEFAULT NULL,
+  `activation_date` datetime DEFAULT NULL,
+  `contact_address` varchar(245) DEFAULT NULL,
+  `business_contact_no` int(11) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `merchant_status` datetime DEFAULT NULL,
+  `contract_status` datetime DEFAULT NULL,
+  `name_as_per_gst` varchar(245) DEFAULT NULL,
+  `GSTIN_number` varchar(45) DEFAULT NULL,
+  `registered_address` varchar(245) DEFAULT NULL,
+  `owner_name` varchar(45) NOT NULL,
+  `owner_email` varchar(45) NOT NULL,
+  `owner_phone` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `rate_card_detail` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE `vendor_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(245) DEFAULT NULL,
+  `phone` bigint(10) NOT NULL,
+  `business_name` varchar(245) NOT NULL,
+  `business_contact_no` bigint(10) DEFAULT NULL,
+  `business_website_url` varchar(45) DEFAULT NULL,
+  `verification_key` varchar(45) DEFAULT NULL,
+  `is_phone_verified` tinyint(4) DEFAULT NULL,
+  `legally_authorised` tinyint(4) NOT NULL,
+  `accept_terms_conditions` tinyint(4) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
+
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+

@@ -3,15 +3,19 @@ class ServiceType{
  
     // database connection and table name
     private $conn;
-    private $table_name = "service_type";
+    private $table_name = "customers";
  
     // object properties
-    public $id;
-    public $name;
-    public $display_name;
-    public $service_info;
-    public $created_date;
-    public $last_update_date;
+    public $user_id;
+    public $first_name;
+    public $last_name;
+    public $email;
+    public $phone;
+    public $verification_key;
+    public $is_email_verified;
+    public $is_phone_verified;
+    public $date_created;
+    public $last_updated;
  
     // constructor with $db as database connection
     public function __construct($db){
@@ -106,30 +110,6 @@ function update(){
     }
  
     return false;
-}
-
-// delete the product
-function delete(){
- 
-    // delete query
-    $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
- 
-    // prepare query
-    $stmt = $this->conn->prepare($query);
- 
-    // sanitize
-    $this->id=htmlspecialchars(strip_tags($this->id));
- 
-    // bind id of record to delete
-    $stmt->bindParam(1, $this->id);
- 
-    // execute query
-    if($stmt->execute()){
-        return true;
-    }
- 
-    return false;
-     
 }
 
 }
