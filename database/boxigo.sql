@@ -87,14 +87,14 @@ CREATE TABLE estimate (
 --
 
 CREATE TABLE service_type (
-  id int(11) NOT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(140) NOT NULL DEFAULT '',
-  display_name varchar(140) NOT NULL,
+  display_name varchar(140) NOT NULL DEFAULT '',
   service_info text NOT NULL,
-  created_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  last_update_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+  created_date datetime NOT NULL DEFAULT current_timestamp(),
+  last_update_date datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 --
 -- Dumping data for table service_type
 --
@@ -179,5 +179,51 @@ CREATE TABLE vendor_request (
   accept_terms_conditions tinyint(4) NOT NULL,
   created_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   last_update_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE rate_card_details (
+  id INT NOT NULL,
+  vendor_id VARCHAR(45) NULL,
+  valid_from DATETIME NULL,
+  valid_to DATETIME NULL,
+  type VARCHAR(45) NULL,
+  detail VARCHAR(45) NULL,
+  created_date DATETIME NULL,
+  last_update_date DATETIME NULL,
+  PRIMARY KEY (id)
+  );
+
+CREATE TABLE items (
+  id INT NOT NULL AUTO_INCREMENT,
+  type VARCHAR(45) NULL,
+  category VARCHAR(45) NULL,
+  sub_category VARCHAR(45) NULL,
+  items VARCHAR(45) NULL,
+  created_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+  );
+
+  CREATE TABLE move_size (
+  id INT NOT NULL AUTO_INCREMENT,
+  move_size VARCHAR(45) NULL,
+  item_id DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  created_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  last_update_date VARCHAR(45) NULL,
+  PRIMARY KEY (id)
+  );
+
+  CREATE TABLE boxigo_user (
+  id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(45) NOT NULL,
+  last_name VARCHAR(45) NOT NULL,
+  email VARCHAR(45) NOT NULL,
+  phone VARCHAR(15) NOT NULL,
+  verification_key VARCHAR(45) NOT NULL,
+  is_email_verified VARCHAR(45) NOT NULL DEFAULT 'no',
+  is_phone_verified VARCHAR(45) NOT NULL DEFAULT 'no',
+  created_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
