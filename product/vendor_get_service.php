@@ -9,6 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 include_once '../config/database.php';
 include_once '../objects/vendor.php';
+
 $database = new Database();
 $db = $database->getConnection();
  
@@ -25,7 +26,6 @@ if($num>0){
         extract($row);
         $product_item=array(
             "id" => $id,
-            "name" => $name,
             "business_name" => $business_name,
             "activation_date" => $activation_date,
             "contact_address" => $contact_address,
@@ -40,7 +40,7 @@ if($num>0){
             "owner_email" => $owner_email,
             "owner_phone" => $owner_phone,
             "created_date" => $created_date,
-            "update_date" => $update_date,
+            "last_update_date" => $last_update_date,
             "rate_card_detail" => $rate_card_detail
         );
         array_push($products_arr["vendor"], $product_item);

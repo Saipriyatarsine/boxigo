@@ -21,9 +21,7 @@ $vendor = new Vendor($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$a = 1;
-if( $a == 1  /*
-    !empty($data->name)&&
+if(   
     !empty($data->business_name)&&
     !empty($data->activation_date)&&
     !empty($data->contact_address)&&
@@ -37,24 +35,24 @@ if( $a == 1  /*
     !empty($data->owner_name)&&
     !empty($data->owner_email)&&
     !empty($data->owner_phone)&&
-    !empty($data->rate_card_detail)*/){
+    !empty($data->rate_card_detail)
+    ){
         
-    $vendor->name=$data->name;
     $vendor->business_name=$data->business_name;
-    $vendor->activation_date=date('Y-m-d H:i:s');
+    $vendor->activation_date=$data->activation_date;
     $vendor->contact_address=$data->contact_address;
     $vendor->business_contact_no=$data->business_contact_no;
     $vendor->category=$data->category;
-    $vendor->merchant_status=date('Y-m-d H:i:s');
-    $vendor->contract_status=date('Y-m-d H:i:s');
+    $vendor->merchant_status=$data->merchant_status;
+    $vendor->contract_status=$data->contract_status;
     $vendor->name_as_per_gst=$data->name_as_per_gst;
     $vendor->GSTIN_number=$data->GSTIN_number;
     $vendor->registered_address=$data->registered_address;
     $vendor->owner_name=$data->owner_name;
     $vendor->owner_email=$data->owner_email;
     $vendor->owner_phone=$data->owner_phone;
-    $vendor->created_date=date('Y-m-d H:i:s');
-    $vendor->update_date=date('Y-m-d H:i:s');
+    $vendor->created_date = date('Y-m-d H:i:s');
+    $vendor->last_update_date = date('Y-m-d H:i:s');
     $vendor->rate_card_detail=$data->rate_card_detail;
 
     // create the product
@@ -73,6 +71,7 @@ else{
     // set response code - 503 service unavailable
     http_response_code(503);
 
+    echo json_encode(array($vendor));
     // tell the user
     echo json_encode(array("message" => "Unable to create Vendor."));
 }
