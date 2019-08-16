@@ -16,7 +16,6 @@ $database = new Database();
 $db = $database->getConnection();
  
 $customer = new Customers($db);
-
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -69,7 +68,4 @@ http_response_code(400);
 echo json_encode(array("message" => "Unable to create customer. Data is incomplete."));
 
 }
-
-
-
 ?>

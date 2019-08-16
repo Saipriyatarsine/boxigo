@@ -20,7 +20,7 @@ $num = $stmt->rowCount();
 if($num>0){ 
 
     $products_arr=array();
-    $products_arr["serviceType"]=array();
+    $products_arr["customers"]=array();
  
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         extract($row);
@@ -36,7 +36,7 @@ if($num>0){
             "date_created" => $date_created
 
         );
-        array_push($products_arr["serviceType"], $product_item);
+        array_push($products_arr["customers"], $product_item);
     }
      http_response_code(200);
      echo json_encode($products_arr);
