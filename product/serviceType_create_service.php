@@ -15,7 +15,7 @@ include_once '../objects/serviceType.php';
 $database = new Database();
 $db = $database->getConnection();
  
-$serviceType = new serviceType($db);
+$serviceType = new ServiceType($db);
  
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
