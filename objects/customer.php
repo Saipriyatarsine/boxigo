@@ -153,10 +153,10 @@ function delete(){
     $stmt = $this->conn->prepare($query);
  
     // sanitize
-    $this->id=htmlspecialchars(strip_tags($this->id));
+    $this->user_id=htmlspecialchars(strip_tags($this->user_id));
  
     // bind id of record to delete
-    $stmt->bindParam(1, $this->id);
+    $stmt->bindParam(1, $this->user_id);
  
     // execute query
     if($stmt->execute()){

@@ -27,7 +27,7 @@ if($customer->delete()){
     http_response_code(200);
  
     // tell the user
-    echo json_encode(array("message" => "Product was deleted."));
+    echo json_encode(array("message" => "Customer was deleted."));
 }
  
 // if unable to update the product, tell the user
@@ -37,6 +37,6 @@ else{
     http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to delete product."));
+    echo json_encode(array("message" => "Unable to delete Customer."));
 }
 ?>
