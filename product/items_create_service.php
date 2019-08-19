@@ -26,9 +26,6 @@ if(
     !empty($data->category) &&
     !empty($data->items)
 ){
-
- 
-    // set product property values
     $items->type = $data->type;
     $items->category = $data->category;
     $items->sub_category = $data->sub_category;
@@ -36,34 +33,22 @@ if(
     $items->created_date = date('Y-m-d H:i:s');
     $items->last_update_date = date('Y-m-d H:i:s');
  
-    // create the product
     if($items->create()){
  
-        // set response code - 201 created
         http_response_code(201);
- 
-        // tell the user
         echo json_encode(array("message" => "Item was Added."));
     }
  
-    // if unable to create the product, tell the user
     else{
  
-        // set response code - 503 service unavailable
         http_response_code(503);
- 
-        // tell the user
         echo json_encode(array("message" => "Unable to Add the item."));
     }
 }
  
-// tell the user data is incomplete
 else{
  
-    // set response code - 400 bad request
     http_response_code(400);
- 
-    // tell the user
     echo json_encode(array("message" => "Unable to Add Item. Data is incomplete."));
 }
 ?>
