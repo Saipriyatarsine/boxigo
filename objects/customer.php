@@ -1,4 +1,5 @@
 <?php
+
 class Customers{
  
     // database connection and table name
@@ -23,25 +24,21 @@ class Customers{
 
 function read(){
  
-    // select all query
-    $query = "SELECT
+ $query = "SELECT
                 *
             FROM
                 " . $this->table_name;
  
-    // prepare query statement
     $stmt = $this->conn->prepare($query);
- 
-    // execute query
     $stmt->execute();
- 
     return $stmt;
 }
 
 // create product
 function create(){
+
+   // try {
  
-    // query to insert record
     $query = "INSERT INTO
                 " . $this->table_name ."
             SET
@@ -55,22 +52,8 @@ function create(){
                  is_phone_verified=:is_phone_verified,
                  date_created=:date_created";
  
-    // prepare query
     $stmt = $this->conn->prepare($query);
- 
-    // sanitize
-    $this->user_id=htmlspecialchars(strip_tags($this->user_id));
-    $this->first_name=htmlspecialchars(strip_tags($this->first_name));
-    $this->last_name=htmlspecialchars(strip_tags($this->last_name));
-    $this->email=htmlspecialchars(strip_tags($this->email));
-    $this->phone=htmlspecialchars(strip_tags($this->phone));
-    $this->verification_key=htmlspecialchars(strip_tags($this->verification_key));
-    $this->is_email_verified=htmlspecialchars(strip_tags($this->is_email_verified));
-    $this->is_phone_verified=htmlspecialchars(strip_tags($this->is_phone_verified));
-    $this->date_created=htmlspecialchars(strip_tags($this->date_created));
- 
- 
-    // bind values
+
     $stmt->bindParam(":user_id", $this->user_id);
     $stmt->bindParam(":first_name", $this->first_name);
     $stmt->bindParam(":last_name", $this->last_name);
@@ -78,17 +61,17 @@ function create(){
     $stmt->bindParam(":phone", $this->phone);
     $stmt->bindParam(":verification_key", $this->verification_key);
     $stmt->bindParam(":is_email_verified", $this->is_email_verified);
-    $stmt->bindParam(":is_email_verified", $this->is_email_verified);
     $stmt->bindParam(":is_phone_verified", $this->is_phone_verified);
     $stmt->bindParam(":date_created", $this->date_created);
- 
+        
     // execute query
     if($stmt->execute()){
         return true;
     }
- 
-    return false;
-     
+
+    echo "Error creating database: " . mysql_error();
+
+    return false;  
 }
 
 // update the product
@@ -98,7 +81,6 @@ function update(){
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-            
             first_name=:first_name,
             last_name=:last_name,
             email=:email,
@@ -136,6 +118,7 @@ function update(){
     $stmt->bindParam(":is_phone_verified", $this->is_phone_verified);
     $stmt->bindParam(":date_created", $this->date_created);
  
+
     // execute the query
     if($stmt->execute()){
         return true;

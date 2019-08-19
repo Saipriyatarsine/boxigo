@@ -25,15 +25,14 @@ if(
     !empty($data->first_name)&&
     !empty($data->last_name)&&
     !empty($data->email)&&
-    !empty($data->phone)&&
-    !empty($data->is_email_verified)&& 
-    !empty($data->is_phone_verified)){
+    !empty($data->phone)){
         
     $customer->user_id = $data->user_id;
     $customer->first_name = $data->first_name;
     $customer->last_name = $data->last_name;
     $customer->email = $data->email;
     $customer->phone = $data->phone;
+    $customer->verification_key = $data->verification_key;
     $customer->is_email_verified = $data->is_email_verified;
     $customer->is_phone_verified = $data->is_phone_verified;
     $customer->date_created = date('Y-m-d H:i:s');
@@ -53,6 +52,7 @@ else{
 
     // set response code - 503 service unavailable
     http_response_code(503);
+    echo json_encode(array("Customer" => $customer));
 
     // tell the user
     echo json_encode(array("message" => "Unable to create customer."));
