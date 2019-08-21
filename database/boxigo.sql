@@ -19,32 +19,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: boxigo
+-- Database: `boxigo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table customers
+-- Table structure for table `customers`
 --
 
-CREATE TABLE customers (
-  user_id varchar(120) NOT NULL,
-  first_name varchar(120) NOT NULL,
-  last_name varchar(120) NOT NULL,
-  email varchar(120) NOT NULL,
-  phone varchar(120) NOT NULL,
-  verification_key varchar(120) NOT NULL,
-  is_email_verified varchar(20) NOT NULL DEFAULT 'no',
-  is_phone_verified varchar(20) NOT NULL DEFAULT 'no',
-  date_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE `customers` (
+  `user_id` varchar(120) NOT NULL,
+  `first_name` varchar(120) NOT NULL,
+  `last_name` varchar(120) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  `phone` varchar(120) NOT NULL,
+  `verification_key` varchar(120) NOT NULL,
+  `is_email_verified` varchar(20) NOT NULL DEFAULT 'no',
+  `is_phone_verified` varchar(20) NOT NULL DEFAULT 'no',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table customers
+-- Dumping data for table `customers`
 --
 
-INSERT INTO customers (user_id, first_name, last_name, email, phone, verification_key, is_email_verified, is_phone_verified, date_created) VALUES
+INSERT INTO `customers` (`user_id`, `first_name`, `last_name`, `email`, `phone`, `verification_key`, `is_email_verified`, `is_phone_verified`, `date_created`) VALUES
 ('B15693', 'Edwin', 'L', 'edwinl182@gmail.com', '9738211850', 'bb77240976f059061dcef262ed22eb8a', 'no', 'no', '2019-08-10 04:55:11'),
 ('B18034', 'Sam', 'Cladson', 'samgladson20@gmail.com', '1234567890', '4ef2df518a849f30b4c00136a4e06acc', 'no', 'no', '2019-08-10 18:56:34'),
 ('B58214', 'Sam', 'Cladson', 'samcladson01@gmail.com', '8300656107', 'be2c8909704cc170616a78d4750c019e', 'no', 'no', '2019-08-10 18:51:31'),
@@ -56,50 +56,50 @@ INSERT INTO customers (user_id, first_name, last_name, email, phone, verificatio
 -- --------------------------------------------------------
 
 --
--- Table structure for table estimate
+-- Table structure for table `estimate`
 --
 
-CREATE TABLE estimate (
-  estimate_id varchar(121) NOT NULL,
-  user_id varchar(121) NOT NULL,
-  moving_from varchar(121) NOT NULL,
-  moving_to varchar(121) NOT NULL,
-  moving_on varchar(121) NOT NULL,
-  property_size varchar(121) NOT NULL,
-  old_floor_no int(11) NOT NULL,
-  new_floor_no int(11) NOT NULL,
-  old_elevator_availability varchar(50) NOT NULL,
-  new_elevator_availability varchar(50) NOT NULL,
-  old_parking_distance int(11) NOT NULL,
-  new_parking_distance int(11) NOT NULL,
-  items text NOT NULL,
-  total_items int(11) NOT NULL,
-  service_type varchar(121) NOT NULL,
-  notification_sent int(11) NOT NULL DEFAULT '0',
-  status int(11) NOT NULL DEFAULT '1',
-  date_created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE `estimate` (
+  `estimate_id` varchar(121) NOT NULL,
+  `user_id` varchar(121) NOT NULL,
+  `moving_from` varchar(121) NOT NULL,
+  `moving_to` varchar(121) NOT NULL,
+  `moving_on` varchar(121) NOT NULL,
+  `property_size` varchar(121) NOT NULL,
+  `old_floor_no` int(11) NOT NULL,
+  `new_floor_no` int(11) NOT NULL,
+  `old_elevator_availability` varchar(50) NOT NULL,
+  `new_elevator_availability` varchar(50) NOT NULL,
+  `old_parking_distance` int(11) NOT NULL,
+  `new_parking_distance` int(11) NOT NULL,
+  `items` text NOT NULL,
+  `total_items` int(11) NOT NULL,
+  `service_type` varchar(121) NOT NULL,
+  `notification_sent` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT '1',
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table service_type
+-- Table structure for table `service_type`
 --
 
-CREATE TABLE service_type (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  name varchar(140) NOT NULL DEFAULT '',
-  display_name varchar(140) NOT NULL DEFAULT '',
-  service_info text NOT NULL,
-  created_date datetime NOT NULL DEFAULT current_timestamp(),
-  last_update_date datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+CREATE TABLE `service_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(140) NOT NULL DEFAULT '',
+  `display_name` varchar(140) NOT NULL,
+  `service_info` text NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
--- Dumping data for table service_type
+-- Dumping data for table `service_type`
 --
 
-INSERT INTO service_type (id, name, display_name, service_info, created_date, last_update_date) VALUES
+INSERT INTO `service_type` (`id`, `name`, `display_name`, `service_info`, `created_date`, `last_update_date`) VALUES
 (1, 'economy', 'Economy', '[\"500+ Shiftings\",\"8+ Years Experience\"]', '2019-08-09 23:00:16', '2019-08-10 07:45:37'),
 (2, 'premium', 'Premium', '[\"ISO Certified\",\"1000+ Shiftings\",\"10+ Years Experience\"]', '2019-08-09 23:00:16', '2019-08-10 07:47:06'),
 (3, 'elite', 'Elite', '[\"ISO Certified\",\"IBA Approved\",\"1500+ Shiftings\",\"20+ Years Experience\"]', '2019-08-09 23:00:16', '2019-08-10 07:47:06');
@@ -109,40 +109,41 @@ INSERT INTO service_type (id, name, display_name, service_info, created_date, la
 --
 
 --
--- Indexes for table customers
+-- Indexes for table `customers`
 --
-ALTER TABLE customers
-  ADD PRIMARY KEY (user_id),
-  ADD UNIQUE KEY email (email),
-  ADD UNIQUE KEY phone (phone);
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD UNIQUE KEY `phone` (`phone`);
 
 --
--- Indexes for table estimate
+-- Indexes for table `estimate`
 --
-ALTER TABLE estimate
-  ADD PRIMARY KEY (estimate_id);
+ALTER TABLE `estimate`
+  ADD PRIMARY KEY (`estimate_id`);
 
 --
--- Indexes for table service_type
+-- Indexes for table `service_type`
 --
-ALTER TABLE service_type
-  ADD PRIMARY KEY (id),
-  ADD UNIQUE KEY name (name),
-  ADD UNIQUE KEY display_name (display_name);
+ALTER TABLE `service_type`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `display_name` (`display_name`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table service_type
+-- AUTO_INCREMENT for table `service_type`
 --
-ALTER TABLE service_type
-  MODIFY id int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `service_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 
 
+<<<<<<< HEAD
 CREATE TABLE vendor (
   id int(11) NOT NULL AUTO_INCREMENT,
   business_name varchar(245) DEFAULT NULL,
@@ -228,4 +229,54 @@ CREATE TABLE property_size_items (
   created_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   last_update_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
+=======
+CREATE TABLE `vendor` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `business_name` varchar(245) DEFAULT NULL,
+  `activation_date` datetime DEFAULT NULL,
+  `contact_address` varchar(245) DEFAULT NULL,
+  `business_contact_no` int(11) DEFAULT NULL,
+  `category` varchar(45) DEFAULT NULL,
+  `merchant_status` datetime DEFAULT NULL,
+  `contract_status` datetime DEFAULT NULL,
+  `name_as_per_gst` varchar(245) DEFAULT NULL,
+  `GSTIN_number` varchar(45) DEFAULT NULL,
+  `registered_address` varchar(245) DEFAULT NULL,
+  `owner_name` varchar(45) NOT NULL,
+  `owner_email` varchar(45) NOT NULL,
+  `owner_phone` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `rate_card_detail` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 );
+
+
+CREATE TABLE `vendor_request` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `email` varchar(245) DEFAULT NULL,
+  `phone` bigint(10) NOT NULL,
+  `business_name` varchar(245) NOT NULL,
+  `business_contact_no` bigint(10) DEFAULT NULL,
+  `business_website_url` varchar(45) DEFAULT NULL,
+  `verification_key` varchar(45) DEFAULT NULL,
+  `is_phone_verified` tinyint(4) DEFAULT NULL,
+  `legally_authorised` tinyint(4) NOT NULL,
+  `accept_terms_conditions` tinyint(4) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_update_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+>>>>>>> f837ed44e8313e13d0cd81ab765dbfe16a92a095
+);
+
+
+
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
