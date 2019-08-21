@@ -4,7 +4,7 @@ class Database{
     // specify your own database credentials
     private $host = "localhost";
     private $db_name = "boxigo";
-    private $username = "root";
+    private $username = "boxigo_test";
     private $password = "password";
     public $conn;
 

@@ -162,7 +162,7 @@ CREATE TABLE vendor (
   last_update_date datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   rate_card_detail int(45) DEFAULT NULL,
   PRIMARY KEY (id)
-) ;
+);
 
 
 CREATE TABLE vendor_request (
@@ -177,42 +177,44 @@ CREATE TABLE vendor_request (
   is_phone_verified tinyint(4) DEFAULT NULL,
   legally_authorised tinyint(4) NOT NULL,
   accept_terms_conditions tinyint(4) NOT NULL,
-  created_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  last_update_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  created_date datetime NOT NULL DEFAULT current_timestamp(),
+  last_update_date datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE rate_card_details (
-  id INT NOT NULL,
-  vendor_id VARCHAR(45) NULL,
-  valid_from DATETIME NULL,
-  valid_to DATETIME NULL,
-  type VARCHAR(45) NULL,
-  detail VARCHAR(45) NULL,
-  created_date DATETIME NULL,
-  last_update_date DATETIME NULL,
+  id int(11) NOT NULL,
+  vendor_id varchar(45) DEFAULT NULL,
+  valid_from datetime DEFAULT NULL,
+  valid_to datetime DEFAULT NULL,
+  type varchar(45) DEFAULT NULL,
+  detail varchar(45) DEFAULT NULL,
+  created_date datetime DEFAULT NULL,
+  last_update_date datetime DEFAULT NULL,
   PRIMARY KEY (id)
-  );
+);
 
 CREATE TABLE items (
-  id INT NOT NULL AUTO_INCREMENT,
-  type VARCHAR(45) NULL,
-  category VARCHAR(45) NULL,
-  sub_category VARCHAR(45) NULL,
-  items VARCHAR(45) NULL,
-  created_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  last_update_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  id int(11) NOT NULL AUTO_INCREMENT,
+  type varchar(45) NOT NULL DEFAULT '',
+  category varchar(45) NOT NULL DEFAULT '',
+  sub_category varchar(45) DEFAULT NULL,
+  items varchar(45) NOT NULL DEFAULT '',
+  created_date datetime NOT NULL DEFAULT current_timestamp(),
+  last_update_date datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (id)
-  );
+);
 
-  CREATE TABLE move_size (
-  id INT NOT NULL AUTO_INCREMENT,
-  move_size VARCHAR(45) NULL,
-  item_id DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
-  created_date DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  last_update_date VARCHAR(45) NULL,
+CREATE TABLE property_size_items (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  move_size varchar(45) NOT NULL DEFAULT '',
+  item_id int(11) NOT NULL,
+  quantity int(11) DEFAULT NULL,
+  created_date datetime NOT NULL DEFAULT current_timestamp(),
+  last_update_date datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (id)
-  );
+);
+
 
   CREATE TABLE boxigo_user (
   id INT NOT NULL AUTO_INCREMENT,
