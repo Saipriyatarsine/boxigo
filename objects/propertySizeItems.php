@@ -67,10 +67,22 @@ function create(){
     $query = "INSERT INTO
                 " . $this->table_name ."
             SET
-            move_size=:move_size, item_id=:item_id, quantity=:quantity, created_date=:created_date, last_update_date=:last_update_date";
+            move_size=:move_size,
+            item_id=:item_id,
+            quantity=:quantity,
+            created_date=:created_date,
+            last_update_date=:last_update_date";
  
     // prepare query
     $stmt = $this->conn->prepare($query);
+
+
+    // sanitize
+    $this->move_size=htmlspecialchars(strip_tags($this->move_size));
+    $this->item_id=htmlspecialchars(strip_tags($this->item_id));
+    $this->quantity=htmlspecialchars(strip_tags($this->quantity));
+    $this->created_date=htmlspecialchars(strip_tags($this->created_date));
+    $this->last_update_date=htmlspecialchars(strip_tags($this->last_update_date));
  
     // bind values
     $stmt->bindParam(":move_size", $this->move_size);
@@ -102,6 +114,14 @@ function update(){
     // prepare query statement
     $stmt = $this->conn->prepare($query);
  
+     // sanitize
+     $this->id = htmlspecialchars(strip_tags($this->id));
+     $this->move_size=htmlspecialchars(strip_tags($this->move_size));
+     $this->item_id=htmlspecialchars(strip_tags($this->item_id));
+     $this->quantity=htmlspecialchars(strip_tags($this->quantity));
+     $this->created_date=htmlspecialchars(strip_tags($this->created_date));
+     $this->last_update_date=htmlspecialchars(strip_tags($this->last_update_date));
+
     // bind new values
     $stmt->bindParam(':id', $this->id);
     $stmt->bindParam(":move_size", $this->move_size);
