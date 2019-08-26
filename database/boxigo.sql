@@ -183,16 +183,16 @@ CREATE TABLE vendor_request (
 );
 
 CREATE TABLE rate_card (
-  id int(11) NOT NULL,
-  vendor_id varchar(45) DEFAULT NULL,
-  valid_from datetime DEFAULT NULL,
-  valid_to datetime DEFAULT NULL,
-  type varchar(45) DEFAULT NULL,
-  detail varchar(45) DEFAULT NULL,
-  created_date datetime DEFAULT NULL,
-  last_update_date datetime DEFAULT NULL,
+  id int(11) NOT NULL AUTO_INCREMENT,
+  vendor_id varchar(45) NOT NULL DEFAULT '',
+  valid_from datetime NOT NULL,
+  valid_to datetime NOT NULL,
+  type varchar(45) NOT NULL DEFAULT '',
+  detail varchar(45) NOT NULL DEFAULT '',
+  created_date datetime NOT NULL DEFAULT current_timestamp(),
+  last_update_date datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (id)
-);
+) ;
 
 CREATE TABLE items (
   id int(11) NOT NULL AUTO_INCREMENT,
