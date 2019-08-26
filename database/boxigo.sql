@@ -230,3 +230,12 @@ CREATE TABLE property_size_items (
   PRIMARY KEY (id)
 );
 
+
+CREATE TABLE items_info (
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  move_size varchar(45) NOT NULL DEFAULT '',
+  items text NOT NULL,
+  created_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  last_update_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id)
+);
