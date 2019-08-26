@@ -7,7 +7,7 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../config/database.php';
-include_once '../objects/Admin_dashboard.php';
+include_once '../objects/admin_view.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -19,7 +19,17 @@ $stmt = $Customer_count->Customer_count();
 
 if(!empty($stmt)){
     $products_arr=array();
-    $products_arr["Total Customer_counts"]=array($stmt->fetch(PDO::FETCH_ASSOC));
+    $products_arr["adminView"]=array();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+        $product_item=array(
+            "Type" => $Type,
+            "total" => $total
+        );
+        array_push($products_arr["adminView"], $product_item);
+    }
+
      http_response_code(200);
      echo json_encode($products_arr);
 }
@@ -29,8 +39,4 @@ else{
         array("message" => "No services found.")
     );
 }
-
-
-
-
 ?>

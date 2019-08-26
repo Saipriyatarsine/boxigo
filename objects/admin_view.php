@@ -6,21 +6,17 @@ class Admin_Dashboard{
     public function __construct($db){
         $this->conn = $db;
     } 
-    // select "customers" as Type, count(*) as total from customers union all
     // Customer count function
     function Customer_count(){
-        $query = "SELECT 'customers' as Type, count(*) as total from customers
-        union all
-        SELECT 'vendor_request' as Type,count(*) as total from vendor_request
-        union all
-        SELECT 'vendor' as Type, count(*) as total from vendor  ";
 
-        echo $query;
-        
+        $query = "SELECT 'customers' as Type, count(*) as total from customers 
+        union all 
+        SELECT 'vendor_request' as Type, count(*) as total from vendor_request 
+        union all 
+        SELECT 'vendor' as Type, count(*) as total from vendor  ";
         $stmt = $this->conn->prepare( $query );
         $stmt->execute();
         return $stmt;
     }
-
 }
 ?>
