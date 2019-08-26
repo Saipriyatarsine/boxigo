@@ -182,7 +182,7 @@ CREATE TABLE vendor_request (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE rate_card_details (
+CREATE TABLE rate_card (
   id int(11) NOT NULL,
   vendor_id varchar(45) DEFAULT NULL,
   valid_from datetime DEFAULT NULL,

@@ -1,7 +1,7 @@
 <?php
 class Rate_Card_Details{
     private $conn;
-    private $table_name = 'rate_card_details';
+    private $table_name = 'rate_card';
 
     public $id;
     public $vendor_id;
